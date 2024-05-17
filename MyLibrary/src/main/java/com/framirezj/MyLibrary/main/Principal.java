@@ -34,6 +34,8 @@ public class Principal {
         if (libroEncontrado.isPresent()){
             DatosLibros libro = libroEncontrado.get();
             System.out.println(libro);
+        }else{
+            System.out.println("El titulo: " + libroSolicitado + ", no se encuentra.");
         }
     }
 
