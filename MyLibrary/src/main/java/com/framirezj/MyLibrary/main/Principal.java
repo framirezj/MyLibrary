@@ -4,6 +4,8 @@ package com.framirezj.MyLibrary.main;
 import com.framirezj.MyLibrary.api.ConsumoApi;
 import com.framirezj.MyLibrary.model.DatosApi;
 import com.framirezj.MyLibrary.model.DatosLibros;
+import com.framirezj.MyLibrary.model.Libro;
+import com.framirezj.MyLibrary.repository.LibroRepository;
 import com.framirezj.MyLibrary.service.ConvierteDatos;
 
 import java.net.URL;
@@ -20,7 +22,8 @@ public class Principal {
 
     private List<DatosLibros> librosAPI;
 
-    
+    //repository
+    private LibroRepository repository;
 
 
 
