@@ -25,7 +25,7 @@ public class Principal {
     public void buscarLibro(){
         System.out.println("Ingrese el nombre del libro que desea buscar");
         String libroSolicitado = teclado.nextLine();
-        obtenerLibros();
+
 
         Optional<DatosLibros> libroEncontrado = librosAPI.stream()
                 .filter( l -> l.titulo().equalsIgnoreCase(libroSolicitado))
