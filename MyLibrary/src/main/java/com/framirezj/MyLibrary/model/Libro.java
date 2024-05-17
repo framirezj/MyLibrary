@@ -15,20 +15,17 @@ public class Libro {
 
 
     //
-    @ManyToMany(mappedBy = "libro")
-    private List<Autor> autor;
+    //@ManyToMany(mappedBy = "libro")
+    //private List<Autor> autor;
 
 
-    //
+
     @OneToMany(mappedBy = "libro")
     private List<Lenguaje> lenguaje;
 
-    public Libro(String titulo, Double cantidadDeDescargas, List<Autor> autor, List<Lenguaje> lenguaje) {
-        this.titulo = titulo;
-        this.cantidadDeDescargas = cantidadDeDescargas;
-        this.autor = autor;
-        this.lenguaje = lenguaje;
-    }
+
+    public Libro(){}
+
 
 
     //GyS
@@ -56,14 +53,6 @@ public class Libro {
 
     public void setCantidadDeDescargas(Double cantidadDeDescargas) {
         this.cantidadDeDescargas = cantidadDeDescargas;
-    }
-
-    public List<Autor> getAutor() {
-        return autor;
-    }
-
-    public void setAutor(List<Autor> autor) {
-        this.autor = autor;
     }
 
     public List<Lenguaje> getLenguaje() {

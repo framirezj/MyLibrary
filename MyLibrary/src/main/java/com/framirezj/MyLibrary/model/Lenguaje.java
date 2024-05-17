@@ -8,16 +8,15 @@ public class Lenguaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String idioma;
 
     //
     @ManyToOne
     private Libro libro;
 
+    public Lenguaje(){}
 
     //GYS
-
 
     public Long getId() {
         return id;
