@@ -15,8 +15,8 @@ public class Libro {
 
 
     //
-    //@ManyToMany(mappedBy = "libro")
-    //private List<Autor> autor;
+    @ManyToMany(mappedBy = "libro")
+    private List<Autor> autor;
 
 
 
@@ -61,5 +61,13 @@ public class Libro {
 
     public void setLenguaje(List<Lenguaje> lenguaje) {
         this.lenguaje = lenguaje;
+    }
+
+    public List<Autor> getAutor() {
+        return autor;
+    }
+
+    public void setAutor(List<Autor> autor) {
+        this.autor = autor;
     }
 }
