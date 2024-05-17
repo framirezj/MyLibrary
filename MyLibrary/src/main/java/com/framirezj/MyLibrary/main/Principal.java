@@ -20,6 +20,8 @@ public class Principal {
 
     private List<DatosLibros> librosAPI;
 
+    
+
 
 
     public void buscarLibro(){
@@ -34,6 +36,11 @@ public class Principal {
         if (libroEncontrado.isPresent()){
             DatosLibros libro = libroEncontrado.get();
             System.out.println(libro);
+
+            //grabar en la base de datos
+
+
+
         }else{
             System.out.println("El titulo: " + libroSolicitado + ", no se encuentra.");
         }
