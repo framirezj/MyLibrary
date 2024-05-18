@@ -8,13 +8,11 @@ import java.net.http.HttpResponse;
 
 public class ConsumoApi {
 
-    private String url;
 
-    public ConsumoApi(String url) {
-        this.url = url;
+    public ConsumoApi() {
     }
 
-    public String obtenerDatos(){
+    public String obtenerDatos(String url){
 
         //cliente
         HttpClient client = HttpClient.newHttpClient();

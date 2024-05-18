@@ -2,67 +2,45 @@ package com.framirezj.MyLibrary.main;
 
 
 import com.framirezj.MyLibrary.api.ConsumoApi;
-import com.framirezj.MyLibrary.model.DatosApi;
-import com.framirezj.MyLibrary.model.DatosLibros;
-import com.framirezj.MyLibrary.model.Libro;
-import com.framirezj.MyLibrary.repository.LibroRepository;
+import com.framirezj.MyLibrary.record.DatosApi;
+import com.framirezj.MyLibrary.record.DatosLibros;
 import com.framirezj.MyLibrary.service.ConvierteDatos;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class Principal {
 
-    private static final String URL_API = "https://gutendex.com/books/";
-    private ConsumoApi consumoApi = new ConsumoApi(URL_API);
-    private ConvierteDatos convierteDatos = new ConvierteDatos();
     Scanner teclado = new Scanner(System.in);
-
-    private List<DatosLibros> librosAPI;
-
-    //repository
-    private LibroRepository repository;
+    private static final String URL_BASE = "https://gutendex.com/books/";
+    private ConsumoApi consumoApi = new ConsumoApi();
+    private ConvierteDatos convierteDatos = new ConvierteDatos();
 
 
 
+    //METODO DE LA OPCION 1 PARA BUSCAR UN LIBRO
     public void buscarLibro(){
         System.out.println("Ingrese el nombre del libro que desea buscar");
         String libroSolicitado = teclado.nextLine();
 
 
-        Optional<DatosLibros> libroEncontrado = librosAPI.stream()
-                .filter( l -> l.titulo().equalsIgnoreCase(libroSolicitado))
+        //llamada a la api por titulo
+        String json = consumoApi.obtenerDatos(URL_BASE +"?search="+ libroSolicitado.replace(" ", "+"));
+        DatosApi libroEncontrado = convierteDatos.obtenerDatos(json, DatosApi.class);
+
+        Optional<DatosLibros> libro = libroEncontrado.libros().stream()
                 .findFirst();
 
-        if (libroEncontrado.isPresent()){
-            DatosLibros libro = libroEncontrado.get();
-            System.out.println(libro);
-
-            //grabar en la base de datos
-
-
-
+        if (libro.isPresent()){
+            System.out.println(libro.get());
         }else{
-            System.out.println("El titulo: " + libroSolicitado + ", no se encuentra.");
+            System.out.println("el libro no se encuentra.");
         }
+
     }
 
-    //Obtiene los libros en la variable librosAPI
-    public void obtenerLibros() {
 
-        var json = consumoApi.obtenerDatos();
-
-        //creado los records ahora puedo convertir el json a objeto java
-        //necesito unos metodos de la libreria Jackson para hacer la conversion
-
-        DatosApi datos =  convierteDatos.obtenerDatos(json, DatosApi.class);
-        this.librosAPI = datos.libros();
-
-        //mostrardatos
-        //this.librosAPI.stream().forEach(System.out::println);
-    }
 
     //MENU
     public void muestraElMenu() {
