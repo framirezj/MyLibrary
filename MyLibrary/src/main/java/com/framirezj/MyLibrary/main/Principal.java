@@ -65,6 +65,7 @@ public class Principal {
             try {
                 libro.setAutor(autor);
                 libroRepository.save(libro);
+                System.out.println(libro);
             } catch (DataIntegrityViolationException ex) {
                 // Manejar la excepción de restricción única
                 System.out.println("El libro con este título ya existe en la base de datos.");
