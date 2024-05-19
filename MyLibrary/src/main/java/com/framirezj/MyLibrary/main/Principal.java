@@ -10,6 +10,7 @@ import com.framirezj.MyLibrary.repository.LibroRepository;
 import com.framirezj.MyLibrary.service.ConvierteDatos;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -32,7 +33,7 @@ public class Principal {
 
 
     //METODO DE LA OPCION 1 PARA BUSCAR UN LIBRO
-    public void buscarLibro(){
+    public void buscarYGuardarLibro(){
         System.out.println("Ingrese el nombre del libro que desea buscar");
         String libroSolicitado = teclado.nextLine();
 
@@ -80,6 +81,13 @@ public class Principal {
 
     }
 
+    //METODO DE LA OPCION 2 PARA LISTAR LOS LIBROS DE LA BD
+    public void listarLibros(){
+        List<Libro> libros = libroRepository.findAll();
+        libros.stream()
+                .forEach(System.out::println);
+    }
+
 
     //MENU
     public void muestraElMenu() {
@@ -99,10 +107,10 @@ public class Principal {
 
             switch (opcion) {
                 case 1:
-                    buscarLibro();
+                    buscarYGuardarLibro();
                     break;
                 case 2:
-                    //buscarEpisodioPorSerie();
+                    listarLibros();
                     break;
                 case 3:
                     //mostrarSeriesBuscadas();
