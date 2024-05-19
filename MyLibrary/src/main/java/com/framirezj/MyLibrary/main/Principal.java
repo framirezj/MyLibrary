@@ -8,6 +8,7 @@ import com.framirezj.MyLibrary.record.DatosApi;
 import com.framirezj.MyLibrary.repository.AutorRepository;
 import com.framirezj.MyLibrary.repository.LibroRepository;
 import com.framirezj.MyLibrary.service.ConvierteDatos;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -60,8 +61,17 @@ public class Principal {
 
             Libro libro = libroEncontrado.get();
 
-            libro.setAutor(autor);
-            libroRepository.save(libro);
+            try {
+                libro.setAutor(autor);
+                libroRepository.save(libro);
+            } catch (DataIntegrityViolationException ex) {
+                // Manejar la excepción de restricción única
+                System.out.println("El libro con este título ya existe en la base de datos.");
+            }
+
+
+
+
 
 
         }else{
