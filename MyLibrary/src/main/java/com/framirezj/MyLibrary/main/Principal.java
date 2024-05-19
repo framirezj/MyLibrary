@@ -71,11 +71,6 @@ public class Principal {
                 System.out.println("El libro con este título ya existe en la base de datos.");
             }
 
-
-
-
-
-
         }else{
             System.out.println("el libro no se encuentra.");
         }
@@ -89,6 +84,11 @@ public class Principal {
                 .forEach(System.out::println);
     }
 
+    //METODO DE LA OPCION 3 PARA LISTAR LOS AUTORES GUARDADOS EN LA BD
+    public void listarAutores(){
+        List<Autor> autores = autorRepository.findAll();
+        autores.stream().forEach(System.out::println);
+    }
 
     //MENU
     public void muestraElMenu() {
@@ -114,7 +114,7 @@ public class Principal {
                     listarLibros();
                     break;
                 case 3:
-                    //mostrarSeriesBuscadas();
+                    listarAutores();
                     break;
                 case 4:
                     //buscarSeriesPorTitulo();

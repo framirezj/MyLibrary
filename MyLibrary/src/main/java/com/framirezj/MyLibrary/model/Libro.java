@@ -78,6 +78,6 @@ public class Libro {
                 Idioma: %s
                 Numero de Descargas: %s
                 -----------------------
-                """.formatted(this.titulo,this.autor,this.idioma, this.cantidadDeDescargas);
+                """.formatted(this.titulo,this.autor.getNombre(),this.idioma, this.cantidadDeDescargas);
     }
 }
