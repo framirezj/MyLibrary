@@ -96,7 +96,14 @@ public class Principal {
     //METODO OPCION 5 PARA LISTAR LIBROS POR IDIOMA
     public void listarIdiomas(){
         List<LibroIdiomaCount> idiomas = libroRepository.buscarIdiomasCount();
-        idiomas.stream().forEach(i -> System.out.println(i.getIdioma() + "-" + i.getCount()));
+        idiomas.stream().forEach(i -> System.out.println(
+                """
+                Codigo idioma: %s, Cantidad de libros: %d""".formatted(i.getIdioma(), i.getCount())
+        ));
+
+        System.out.println("Ingresa el codigo de idioma para listar los libros:");
+        String codigo = teclado.nextLine();
+        libroRepository.findByIdiomaEquals(codigo).stream().forEach(System.out::println);
 
 
     }
