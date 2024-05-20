@@ -6,10 +6,12 @@ import com.framirezj.MyLibrary.model.Autor;
 import com.framirezj.MyLibrary.model.Libro;
 import com.framirezj.MyLibrary.record.DatosApi;
 import com.framirezj.MyLibrary.repository.AutorRepository;
+import com.framirezj.MyLibrary.repository.LibroIdiomaCount;
 import com.framirezj.MyLibrary.repository.LibroRepository;
 import com.framirezj.MyLibrary.service.ConvierteDatos;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -90,6 +92,15 @@ public class Principal {
         autores.stream().forEach(System.out::println);
     }
 
+
+    //METODO OPCION 5 PARA LISTAR LIBROS POR IDIOMA
+    public void listarIdiomas(){
+        List<LibroIdiomaCount> idiomas = libroRepository.buscarIdiomasCount();
+        idiomas.stream().forEach(i -> System.out.println(i.getIdioma() + "-" + i.getCount()));
+
+
+    }
+
     //MENU
     public void muestraElMenu() {
         var opcion = -1;
@@ -120,7 +131,7 @@ public class Principal {
                     //buscarSeriesPorTitulo();
                     break;
                 case 5:
-                    //mostrarTop5Series();
+                    listarIdiomas();
                     break;
                 case 0:
                     System.out.println("Cerrando la aplicación...");
