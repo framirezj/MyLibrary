@@ -1,6 +1,5 @@
 package com.framirezj.MyLibrary.main;
 
-
 import com.framirezj.MyLibrary.api.ConsumoApi;
 import com.framirezj.MyLibrary.model.Autor;
 import com.framirezj.MyLibrary.model.Libro;
@@ -10,8 +9,6 @@ import com.framirezj.MyLibrary.repository.LibroIdiomaCount;
 import com.framirezj.MyLibrary.repository.LibroRepository;
 import com.framirezj.MyLibrary.service.ConvierteDatos;
 import org.springframework.dao.DataIntegrityViolationException;
-
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -27,7 +24,6 @@ public class Principal {
 
     //constructor
     public Principal(){}
-
     public Principal(LibroRepository repository, AutorRepository autorRepository){
         this.libroRepository = repository;
         this.autorRepository = autorRepository;
@@ -92,6 +88,14 @@ public class Principal {
         autores.stream().forEach(System.out::println);
     }
 
+    //METODO DE LA OPCION 4 PARA LISTAR LOS AUTORES VIVOS SEGUN AÑO
+    public void listarAutoresVivos(){
+        System.out.println("Ingrese el año vivo de autor(es) que desea buscar:");
+        String fecha = teclado.nextLine();
+
+        List<Autor> autoresVivos = autorRepository.buscarAutorVivo(fecha);
+        autoresVivos.stream().forEach(System.out::println);
+    }
 
     //METODO OPCION 5 PARA LISTAR LIBROS POR IDIOMA
     public void listarIdiomas(){
@@ -101,7 +105,7 @@ public class Principal {
                 Codigo idioma: %s, Cantidad de libros: %d""".formatted(i.getIdioma(), i.getCount())
         ));
 
-        System.out.println("Ingresa el codigo de idioma para listar los libros:");
+        System.out.println("Ingresa el codigo de idioma para listar los libros: (Ejemplo: es)");
         String codigo = teclado.nextLine();
         libroRepository.findByIdiomaEquals(codigo).stream().forEach(System.out::println);
 
@@ -135,7 +139,7 @@ public class Principal {
                     listarAutores();
                     break;
                 case 4:
-                    //buscarSeriesPorTitulo();
+                    listarAutoresVivos();
                     break;
                 case 5:
                     listarIdiomas();

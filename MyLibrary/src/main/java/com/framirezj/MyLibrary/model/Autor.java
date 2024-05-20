@@ -14,19 +14,19 @@ public class Autor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    private String FechaDeNacimiento;
-    private String FechaDeMuerte;
+    private String fechaDeNacimiento;
+    private String fechaDeMuerte;
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Libro> libros = new ArrayList<>();
 
-    //constr
+    //constructores
 
     public Autor() {}
 
     public Autor(DatosAutor datosAutor) {
         this.nombre = datosAutor.nombre();
-        FechaDeNacimiento = datosAutor.FechaDeNacimiento();
-        FechaDeMuerte = datosAutor.FechaDeMuerte();
+        fechaDeNacimiento = datosAutor.FechaDeNacimiento();
+        fechaDeMuerte = datosAutor.FechaDeMuerte();
 
     }
 
@@ -50,19 +50,19 @@ public class Autor {
     }
 
     public String getFechaDeNacimiento() {
-        return FechaDeNacimiento;
+        return fechaDeNacimiento;
     }
 
     public void setFechaDeNacimiento(String fechaDeNacimiento) {
-        FechaDeNacimiento = fechaDeNacimiento;
+        this.fechaDeNacimiento = fechaDeNacimiento;
     }
 
     public String getFechaDeMuerte() {
-        return FechaDeMuerte;
+        return fechaDeMuerte;
     }
 
     public void setFechaDeMuerte(String fechaDeMuerte) {
-        FechaDeMuerte = fechaDeMuerte;
+        this.fechaDeMuerte = fechaDeMuerte;
     }
 
     public List<Libro> getLibros() {
@@ -77,11 +77,11 @@ public class Autor {
 
     @Override
     public String toString() {
-        return
-                "Autor: '" + nombre + '\'' +
-                ", FechaDeNacimiento: '" + FechaDeNacimiento + '\'' +
-                ", FechaDeMuerte: '" + FechaDeMuerte + '\'' +
-                ", libros: " + libros.stream().map(Libro::getTitulo).collect(Collectors.toList()) +
-                '}';
+        return """
+                Autor: %s
+                Fecha de Nacimiento: %s
+                Fecha de Muerte: %s
+                Libros: %s
+                """.formatted(this.nombre,this.fechaDeNacimiento,this.fechaDeMuerte,this.libros.stream().map(Libro::getTitulo).collect(Collectors.toList()));
     }
 }
