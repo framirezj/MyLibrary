@@ -157,6 +157,7 @@ public class Principal {
         var opcion = -1;
         while (opcion != 0) {
             var menu = """
+                    ########### - MENU - ###########
                     1 - Buscar libro por título.
                     2 - Listar libros registrados.
                     3 - Listar autores registrados.
