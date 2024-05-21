@@ -90,11 +90,28 @@ public class Principal {
 
     //METODO DE LA OPCION 4 PARA LISTAR LOS AUTORES VIVOS SEGUN AÑO
     public void listarAutoresVivos(){
-        System.out.println("Ingrese el año vivo de autor(es) que desea buscar:");
-        String fecha = teclado.nextLine();
+        System.out.println("Ingrese el año vivo de autor(es) que desea buscar: (Ejemplo: 1559)");
+        int fechaBuscada;
+        String fecha;
 
-        List<Autor> autoresVivos = autorRepository.buscarAutorVivo(fecha);
-        autoresVivos.stream().forEach(System.out::println);
+        try{
+            fechaBuscada = teclado.nextInt();
+
+            fecha = String.valueOf(fechaBuscada);
+
+            List<Autor> autoresVivos = autorRepository.buscarAutorVivo(fecha);
+
+            if (autoresVivos.isEmpty()){
+                System.out.println("No se encontraron registros :'(.");
+            }else{
+                autoresVivos.stream().forEach(System.out::println);
+            }
+
+        }catch (Exception e){
+            System.out.println("Escriba una año valido, Ejemplo 1600");
+            teclado.nextLine();
+        }
+
     }
 
     //METODO OPCION 5 PARA LISTAR LIBROS POR IDIOMA
