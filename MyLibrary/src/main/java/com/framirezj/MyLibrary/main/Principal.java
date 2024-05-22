@@ -156,17 +156,22 @@ public class Principal {
     public void muestraElMenu() {
         var opcion = -1;
         while (opcion != 0) {
+
             var menu = """
-                    ########### - MENU - ###########
-                    1 - Buscar libro por título.
-                    2 - Listar libros registrados.
-                    3 - Listar autores registrados.
-                    4 - Listar autores vivos en un determinado año.
-                    5 - Listar libros por idioma
-                    Extras-------
-                    6 - Listar el TOP 10 Libros con mas descargas.
-                    0 - Salir
+                    ├─────────────────────────────────────────────────┤ 
+                                    📚 MENU PRINCIPAL 📚  
+                    ├─────────────────────────────────────────────────┤ 
+                        1. 🔍 Buscar libros por título
+                        2. 📚 Listar libros registrados   
+                        3. 👤 Listar autores registrados
+                        4. 📅 Listar autores vivos en un año 
+                        5. 🌐 Listar libros por idioma 
+                        6. 🔝 Listar el top 10 libros más descargados
+                        0. 🚪 Salir 
+                    ├─────────────────────────────────────────────────┤    
                     """;
+
+
             System.out.println(menu);
             opcion = teclado.nextInt();
             teclado.nextLine();
